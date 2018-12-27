@@ -1,10 +1,6 @@
 <?php
-  require("../db/connection.php");
-
   class Product{
   
-    private $description; 
-    private $base_price;
 
     public function __construct($description,$price)
     {
@@ -27,6 +23,6 @@
       $sql = "INSERT INTO products (description, price) VALUES ('".$this->description."', '".$this->base_price."')";
       $con = Connection::con();
       $response = mysqli_query($con,$sql);
-      mysqli_close($con);
+      return $con->insert_id; 
     }
   }

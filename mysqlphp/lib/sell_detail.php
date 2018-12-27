@@ -2,21 +2,21 @@
 
 class Sell_detail{
 
-  private $id;
-  private $id_product;
-  private $id_sell;
+
+  private $product_id;
+  private $sell_id;
   private $description;
-  private $value;
+  private $price;
   private $discount; 
   private $tax; 
   private $total; 
 
-  public function __construct($id_product,$id_sell, $description, $value, $discount, $tax, $total)
+  public function __construct($description, $price, $discount, $tax, $total,$sell_id,$product_id)
   {
-    $this->id_product = $id_product;
-    $this->id_sell = $id_sell;
+    $this->product_id = $product_id;
+    $this->sell_id = $sell_id;
     $this->description = $description;
-    $this->value = $value; 
+    $this->price = $price; 
     $this->discount = $discount;
     $this->tax = $tax; 
     $this->total = $total; 
@@ -57,9 +57,11 @@ class Sell_detail{
     $this->total;
   }
 
-  public function create($id_product,$id_sell, $description, $value, $discount, $tax, $total)
+  public function create()
   {
-    $query = "insert into sell_detail values('$id_product','$id_sell', '$description', '$value', '$discount', '$tax', '$total')";
-    $response = mysql_query($query, Connection::connect());
+    $sql = "INSERT INTO sells_detail (description, price, discount, tax, total, sell_id, product_id) VALUES ('".$this->description."','".$this->price."','".$this->discount."','".$this->tax."','".$this->total."','".$this->sell_id."','".$this->product_id."')";
+    $con = Connection::con();
+    $response = mysqli_query($con,$sql);
+    return $con->insert_id;
   }
 }

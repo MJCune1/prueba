@@ -1,9 +1,6 @@
 <?php 
-  require("../db/connection.php");
-
   class Sell{
     
-    private $id;
     private $serial;
     private $id_client;
     private $date; 
@@ -13,9 +10,8 @@
     private $tax;
     private $total; 
 
-    public function __construct($id, $serial, $id_client, $date, $hour, $subtotal, $discount, $tax, $total)
+    public function __construct($serial, $id_client, $date, $hour, $subtotal, $discount, $tax, $total)
     {
-      $this->id = $id; 
       $this->serial = $serial;
       $this->id_client = $id_client; 
       $this->date = $date; 
@@ -24,16 +20,14 @@
       $this->discount = $discount;
       $this->tax = $tax; 
       $this->total = $total; 
-
     }
   
     public function create()
     {
-      $sql = "INSERT INTO sells (serial, id_client, actual_date, hour, subtotal, tax, total) 
-      VALUES ('".$this->description."', '".$this->base_price."')";
+      $sql = "INSERT INTO sells (serial, id_client, actual_date, hour, subtotal, discount, tax, total) VALUES ('".$this->serial."','".$this->id_client."','".$this->date."','".$this->hour."','".$this->subtotal."','".$this->discount."','".$this->tax."','".$this->total."')";
       $con = Connection::con();
       $response = mysqli_query($con,$sql);
-      mysqli_close($con);
+      return $con->insert_id; 
     }
 }
 
