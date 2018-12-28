@@ -3,5 +3,5 @@ Directorio **clases y herencia**
 - formularios employee_form.html
               person_form.html
              
-Directorio **mysyqlphp**
+Directorio **mysqlphp**
 - formulario index.html
