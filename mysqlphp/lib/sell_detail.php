@@ -1,4 +1,7 @@
 <?php 
+error_reporting(E_ALL);
+ini_set("display_errors","On");
+
 
 class Sell_detail{
 
@@ -22,44 +25,10 @@ class Sell_detail{
     $this->total = $total; 
   }
 
-  public function getProduct()
-  {
-    $this->id_product;
-  }
-
-  public function getDescription()
-  {
-    $this->description; 
-  }
-
-  public function getSell()
-  {
-    $this->id_sell;
-  }
-
-  public function getValue()
-  {
-    $this->value;
-  }
-
-  public function getDiscount()
-  {
-    $this->discount; 
-  }
-
-  public function getTax()
-  {
-    $this->tax;
-  }
-
-  public function getTotal()
-  {
-    $this->total;
-  }
 
   public function create()
   {
-    $sql = "INSERT INTO sells_detail (description, price, discount, tax, total, sell_id, product_id) VALUES ('".$this->description."','".$this->price."','".$this->discount."','".$this->tax."','".$this->total."','".$this->sell_id."','".$this->product_id."')";
+    $sql = "INSERT INTO `sells_detail`(`description`, `price`, `discount`, `tax`, `total`, `productid`, `sellid`)  VALUES ('".$this->description."','".$this->price."','".$this->discount."','".$this->tax."','".$this->total."','".$this->product_id."','".$this->sell_id."')";
     $con = Connection::con();
     $response = mysqli_query($con,$sql);
     return $con->insert_id;
